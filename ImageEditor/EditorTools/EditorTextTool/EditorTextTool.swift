@@ -3,9 +3,11 @@ import Foundation
 class EditorTextTool : EditorToolProtocol {
     
     var textToolView : TextToolView
+    var sourceImage : UIImage
     
-    init() {
-        textToolView = NSBundle.mainBundle().loadNibNamed("TextToolView", owner: nil, options: nil)[0] as TextToolView
+    init(sourceImage : UIImage) {
+        self.textToolView = NSBundle.mainBundle().loadNibNamed("TextToolView", owner: nil, options: nil)[0] as TextToolView
+        self.sourceImage = sourceImage
     }
     
     func getView() -> UIView {
@@ -13,7 +15,8 @@ class EditorTextTool : EditorToolProtocol {
     }
     
     func getImage() -> UIImage {
-        return UIImage()
+        var imageCreator = ImageCreator()
+        return imageCreator.addLabelToImage(self.sourceImage, labels: self.textToolView.overlayViews, container: self.textToolView.editAreaView)
     }
     
     func getName() -> NSString {

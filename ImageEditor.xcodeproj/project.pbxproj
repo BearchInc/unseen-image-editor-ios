@@ -28,6 +28,7 @@
 		9682FA5B1A5AC41B00B3BDAA /* TextToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9682FA5A1A5AC41B00B3BDAA /* TextToolView.xib */; };
 		9682FA5D1A5AC61D00B3BDAA /* TextToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9682FA5C1A5AC61D00B3BDAA /* TextToolView.swift */; };
 		9682FA5F1A5B049000B3BDAA /* EditorTextTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9682FA5E1A5B049000B3BDAA /* EditorTextTool.swift */; };
+		96D348271A5C04560069777D /* ImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D348261A5C04560069777D /* ImageCreator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		9682FA5A1A5AC41B00B3BDAA /* TextToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextToolView.xib; sourceTree = "<group>"; };
 		9682FA5C1A5AC61D00B3BDAA /* TextToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToolView.swift; sourceTree = "<group>"; };
 		9682FA5E1A5B049000B3BDAA /* EditorTextTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextTool.swift; sourceTree = "<group>"; };
+		96D348261A5C04560069777D /* ImageCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				966C6DFF1A53312E00ABFE73 /* Supporting Files */,
 				966C6E281A53338600ABFE73 /* TestFile.m */,
 				966C6E271A53338600ABFE73 /* ImageEditor-Bridging-Header.h */,
+				96D348261A5C04560069777D /* ImageCreator.swift */,
 			);
 			path = ImageEditor;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				966C6E321A53339900ABFE73 /* UITextField+DynamicFontSize.m in Sources */,
 				9682FA5F1A5B049000B3BDAA /* EditorTextTool.swift in Sources */,
 				966C6E041A53312E00ABFE73 /* ImageEditorViewController.swift in Sources */,
+				96D348271A5C04560069777D /* ImageCreator.swift in Sources */,
 				966C6E311A53339900ABFE73 /* IQLabelView.m in Sources */,
 				9682FA5D1A5AC61D00B3BDAA /* TextToolView.swift in Sources */,
 				966C6E291A53338600ABFE73 /* TestFile.m in Sources */,

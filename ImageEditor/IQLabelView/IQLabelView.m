@@ -42,13 +42,13 @@ static IQLabelView *lastTouchedView;
 @implementation IQLabelView
 {
     CGFloat _globalInset;
-
+    
     CGRect initialBounds;
     CGFloat initialDistance;
-
+    
     CGPoint beginningPoint;
     CGPoint beginningCenter;
-
+    
     CGPoint prevPoint;
     CGPoint touchLocation;
     
@@ -101,7 +101,7 @@ static IQLabelView *lastTouchedView;
     /*(1+_globalInset*2)*/
     if (frame.size.width < (1+12*2))     frame.size.width = 25;
     if (frame.size.height < (1+12*2))   frame.size.height = 25;
- 
+    
     self = [super initWithFrame:frame];
     if (self) {
         _globalInset = 12;
@@ -117,7 +117,7 @@ static IQLabelView *lastTouchedView;
         closeView.userInteractionEnabled = YES;
         [self addSubview:closeView];
         
-         //Rotating view which is in bottom right corner
+        //Rotating view which is in bottom right corner
         rotateView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width-_globalInset*2, self.bounds.size.height-_globalInset*2, _globalInset*2, _globalInset*2)];
         [rotateView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin)];
         rotateView.backgroundColor = [UIColor whiteColor];
@@ -125,7 +125,7 @@ static IQLabelView *lastTouchedView;
         rotateView.contentMode = UIViewContentModeCenter;
         rotateView.userInteractionEnabled = YES;
         [self addSubview:rotateView];
-
+        
         UIPanGestureRecognizer *moveGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveGesture:)];
         [self addGestureRecognizer:moveGesture];
         
@@ -147,7 +147,7 @@ static IQLabelView *lastTouchedView;
         [self setRotateImage:[UIImage imageNamed:@"IQLabelView.bundle/sticker_resize.png"]];
         
         [self hideEditingHandles];
-     }
+    }
     return self;
 }
 
@@ -310,9 +310,9 @@ static IQLabelView *lastTouchedView;
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         beginningPoint = touchLocation;
         beginningCenter = self.center;
- 
+        
         [self setCenter:CGPointMake(beginningCenter.x+(touchLocation.x-beginningPoint.x), beginningCenter.y+(touchLocation.y-beginningPoint.y))];
-
+        
         beginBounds = self.bounds;
         
         if([_delegate respondsToSelector:@selector(labelViewDidBeginEditing:)]) {
@@ -331,12 +331,12 @@ static IQLabelView *lastTouchedView;
         }
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         [self setCenter:CGPointMake(beginningCenter.x+(touchLocation.x-beginningPoint.x), beginningCenter.y+(touchLocation.y-beginningPoint.y))];
-    
+        
         if([_delegate respondsToSelector:@selector(labelViewDidEndEditing:)]) {
             [_delegate labelViewDidEndEditing:self];
         }
     }
-
+    
     prevPoint = touchLocation;
 }
 
@@ -351,23 +351,23 @@ static IQLabelView *lastTouchedView;
         
         initialBounds = self.bounds;
         initialDistance = CGPointGetDistance(center, touchLocation);
-       
+        
         if([_delegate respondsToSelector:@selector(labelViewDidBeginEditing:)]) {
             [_delegate labelViewDidBeginEditing:self];
         }
     } else if ([recognizer state] == UIGestureRecognizerStateChanged) {
         float ang = atan2(touchLocation.y-center.y, touchLocation.x-center.x);
         
-        float angleDiff = deltaAngle - ang;
-//        float angleDiff = -ang;
-        [self setTransform:CGAffineTransformMakeRotation(-angleDiff)];
+        self.rotationAngle = deltaAngle - ang;
+        //        float angleDiff = -ang;
+        [self setTransform:CGAffineTransformMakeRotation(-self.rotationAngle)];
         [self setNeedsDisplay];
         
         //Finding scale between current touchPoint and previous touchPoint
         double scale = sqrtf(CGPointGetDistance(center, touchLocation)/initialDistance);
         
         CGRect scaleRect = CGRectScale(initialBounds, scale, scale);
- 
+        
         if (scaleRect.size.width >= (1+_globalInset*2 + 20) && scaleRect.size.height >= (1+_globalInset*2 + 20)) {
             if (_fontSize < 100 || CGRectGetWidth(scaleRect) < CGRectGetWidth(self.bounds)) {
                 [_textView adjustsFontSizeToFillRect:scaleRect];

@@ -19,7 +19,7 @@ class ImageEditorViewController: UIViewController {
     }
 
     @IBAction func showTextTool(sender: AnyObject) {
-        self.currentTool = EditorTextTool()
+        self.currentTool = EditorTextTool(sourceImage: imageView.image!)
         let selfFrame = self.view.frame
         let toolFrame = CGRect(x: CGRectGetMinX(selfFrame), y: CGRectGetMaxY(editToolbar.frame), width: CGRectGetWidth(selfFrame), height: CGRectGetHeight(selfFrame) - CGRectGetHeight(editToolbar.frame))
         self.currentTool?.getView().frame = toolFrame
@@ -36,6 +36,7 @@ class ImageEditorViewController: UIViewController {
     }
     
     @IBAction func editApply(sender: AnyObject) {
+        self.imageView.image = self.currentTool?.getImage()
         dismissTool()
         setEditMode(false)
     }

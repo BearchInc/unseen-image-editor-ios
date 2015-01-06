@@ -19,6 +19,7 @@
 @property (assign, nonatomic) CGFloat fontSize;
 @property (assign, nonatomic) UIImage *closeImage;
 @property (assign, nonatomic) UIImage *rotateImage;
+@property (assign, nonatomic) CGFloat rotationAngle;
 
 @property (unsafe_unretained) id <IQLabelViewDelegate> delegate;
 
